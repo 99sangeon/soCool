@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>홈화면</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header th:replace="/nav :: navFragment(${userId})"></header>
+
+<main>
+    <div class="join_main_div">
+        <div class="join_sub_div">
+            <div class="content_title_div">
+                <h2 class="content_title">회원등록</h2>
+            </div>
+
+            <form th:action th:method="post" th:object="${member}">
+                <div>
+                    <div class="join_label_div"><label id="name">이름</label></div>
+                    <input class="join_text" type="text" th:field="*{name}" placeholder="이름">
+                    <div class="field-error" th:errors="*{name}">이름 오류</div>
+                </div>
+                <div>
+                    <div class="join_label_div"><label id="age">나이</label></div>
+                    <input class="join_text" type="text" th:field="*{age}" placeholder="나이">
+                    <div class="field-error" th:errors="*{age}">나이 오류</div>
+                </div>
+                <div>
+                    <div class="join_label_div"><label id="birth">생년월일</label></div>
+                    <input class="join_text"  type="date" th:field="*{birth}" placeholder="ex)19991019">
+                    <div class="field-error" th:errors="*{birth}">생년월일 오류</div>
+                </div>
+                <div>
+                    <div class="join_label_div"><label id="height">키</label></div>
+                    <input class="join_text"  type="text" th:field="*{height}" placeholder="cm">
+                    <div class="field-error" th:errors="*{height}">키 오류</div>
+
+                </div>
+                <div>
+                    <div class="join_label_div"><label id="weight">몸무게</label></div>
+                    <input class="join_text" type="text" th:field="*{weight}" placeholder="kg">
+                    <div class="field-error" th:errors="*{weight}">몸무게 오류</div>
+                </div>
+                <div>
+                    <div class="join_label_div"><label id="gender">성별</label></div>
+                    <div th:each="type : ${genderTypes}" class="form-check form-check-inline">
+                        <input type="radio" th:field="*{gender}" th:value="${type.name()}" class="form-check-input">
+                        <label th:for="${#ids.prev('gender')}" th:text="${type.description}" class="form-check-label">
+                            MALE
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="join_label_div"><label id="mobile">전화번호</label></div>
+                    <input class="join_text" type="text" th:field="*{mobile}" placeholder="ex)01073074546">
+                    <div class="field-error" th:errors="*{mobile}">전화번호 오류</div>
+                </div>
+
+                <div>
+                    <button class="join_submit" type="submit">등록하기</button>
+                </div>
+                <div>
+                    <button class="join_cancel" onclick="location.href='/'">등록취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="/footer :: footFragment"></footer>
+
+
+</body>
+</html>
