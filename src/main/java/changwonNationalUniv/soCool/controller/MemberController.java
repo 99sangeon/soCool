@@ -1,6 +1,6 @@
 package changwonNationalUniv.soCool.controller;
 
-import changwonNationalUniv.soCool.controller.dto.MemberRequestDto;
+import changwonNationalUniv.soCool.dto.MemberRequestDto;
 import changwonNationalUniv.soCool.entity.Gender;
 import changwonNationalUniv.soCool.entity.Member;
 import changwonNationalUniv.soCool.service.MemberService;

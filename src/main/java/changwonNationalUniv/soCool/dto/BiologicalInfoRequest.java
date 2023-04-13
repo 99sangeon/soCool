@@ -1,4 +1,4 @@
-package changwonNationalUniv.soCool.socket.dto;
+package changwonNationalUniv.soCool.dto;
 
 import changwonNationalUniv.soCool.entity.BiologicalInfo;
 import lombok.Builder;

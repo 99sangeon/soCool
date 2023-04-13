@@ -4,7 +4,7 @@ import changwonNationalUniv.soCool.entity.BiologicalInfo;
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;
 import changwonNationalUniv.soCool.repository.BiologicalInfoRepository;
 import changwonNationalUniv.soCool.repository.RehabilitationInfoRepository;
-import changwonNationalUniv.soCool.socket.dto.BiologicalInfoRequest;
+import changwonNationalUniv.soCool.dto.BiologicalInfoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

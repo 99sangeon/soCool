@@ -1,4 +1,4 @@
-package changwonNationalUniv.soCool.controller.dto;
+package changwonNationalUniv.soCool.dto;
 
 import changwonNationalUniv.soCool.entity.Gender;
 import changwonNationalUniv.soCool.entity.Member;
@@ -23,19 +23,19 @@ public class MemberRequestDto {
     private String name;
 
     @NotNull(message = "나이는 필수항목입니다.")
-    private int age;
+    private Integer age;
 
     @NotNull(message = "생년월일은 필수항목입니다.")
     private String birth;
 
     @NotNull(message = "키는 필수항목입니다.")
-    private float height;
+    private Float height;
 
     @NotNull(message = "몸무게는 필수항목입니다.")
-    private float weight;
+    private Float weight;
 
     @NotEmpty(message = "성별은 필수항목입니다.")
-    private Gender gender;
+    private String gender;
 
     @NotEmpty(message = "전화번호는 필수항목입니다.")
     private String mobile;
@@ -49,7 +49,7 @@ public class MemberRequestDto {
                 .birth(LocalDate.of(Integer.valueOf(bir[0]), Integer.valueOf(bir[1]) ,Integer.valueOf(bir[2])))
                 .height(height)
                 .weight(weight)
-                .gender(gender)
+                .gender(Gender.valueOf(gender))
                 .mobile(mobile)
                 .build();
     }

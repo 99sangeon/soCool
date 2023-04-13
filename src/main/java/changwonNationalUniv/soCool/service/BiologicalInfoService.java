@@ -1,7 +1,7 @@
 package changwonNationalUniv.soCool.service;
 
 
-import changwonNationalUniv.soCool.socket.dto.BiologicalInfoRequest;
+import changwonNationalUniv.soCool.dto.BiologicalInfoRequest;
 
 public interface BiologicalInfoService {
 

@@ -1,6 +1,6 @@
 package changwonNationalUniv.soCool.service;
 
-import changwonNationalUniv.soCool.controller.dto.RehabilitationInfoRequest;
+import changwonNationalUniv.soCool.dto.RehabilitationInfoRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+@Rollback
 class RehabilitationInfoServiceTest {
 
     @Autowired

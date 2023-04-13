@@ -1,6 +1,6 @@
 package changwonNationalUniv.soCool.service;
 
-import changwonNationalUniv.soCool.socket.dto.BiologicalInfoRequest;
+import changwonNationalUniv.soCool.dto.BiologicalInfoRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+@Rollback
 class BiologicalInfoServiceTest {
 
     @Autowired

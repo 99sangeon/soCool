@@ -1,6 +1,6 @@
 package changwonNationalUniv.soCool.controller;
 
-import changwonNationalUniv.soCool.controller.dto.RehabilitationInfoRequest;
+import changwonNationalUniv.soCool.dto.RehabilitationInfoRequest;
 import changwonNationalUniv.soCool.service.RehabilitationInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package changwonNationalUniv.soCool.controller.dto;
+package changwonNationalUniv.soCool.dto;
 
 
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;

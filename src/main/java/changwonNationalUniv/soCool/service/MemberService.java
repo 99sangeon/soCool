@@ -1,6 +1,6 @@
 package changwonNationalUniv.soCool.service;
 
-import changwonNationalUniv.soCool.controller.dto.MemberRequestDto;
+import changwonNationalUniv.soCool.dto.MemberRequestDto;
 import changwonNationalUniv.soCool.entity.Member;
 
 import java.util.List;

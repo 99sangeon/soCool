@@ -1,7 +1,7 @@
 package changwonNationalUniv.soCool.socket;
 
 import changwonNationalUniv.soCool.service.BiologicalInfoService;
-import changwonNationalUniv.soCool.socket.dto.BiologicalInfoRequest;
+import changwonNationalUniv.soCool.dto.BiologicalInfoRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+@Rollback
 class MemberServiceTest {
 
     @Autowired
@@ -27,8 +27,8 @@ class MemberServiceTest {
                 .birth(LocalDate.of(1999,10,19))
                 .age(25)
                 .gender(Gender.MALE)
-                .weight(178)
-                .height(78)
+                .weight((float)178.2)
+                .height((float)78.5)
                 .build();
 
         //memberService.save(member);

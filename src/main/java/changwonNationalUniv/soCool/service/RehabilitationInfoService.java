@@ -1,6 +1,6 @@
 package changwonNationalUniv.soCool.service;
 
-import changwonNationalUniv.soCool.controller.dto.RehabilitationInfoRequest;
+import changwonNationalUniv.soCool.dto.RehabilitationInfoRequest;
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;
 
 

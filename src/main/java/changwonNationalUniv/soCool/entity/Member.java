@@ -20,13 +20,13 @@ public class Member {
 
     private String name;
 
-    private int age;
+    private Integer age;
 
     private LocalDate birth;
 
-    private float height;
+    private Float height;
 
-    private float weight;
+    private Float weight;
 
     private String mobile;
 
@@ -37,7 +37,7 @@ public class Member {
     private Time time = new Time();
 
     @Builder
-    public Member(String name, int age, LocalDate birth, float height, float weight, Gender gender, String mobile) {
+    public Member(String name, Integer age, LocalDate birth, Float height, Float weight, Gender gender, String mobile) {
         this.name = name;
         this.age = age;
         this.birth = birth;
