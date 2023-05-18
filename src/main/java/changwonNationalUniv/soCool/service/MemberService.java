@@ -1,12 +1,12 @@
 package changwonNationalUniv.soCool.service;
 
-import changwonNationalUniv.soCool.dto.MemberRequestDto;
-import changwonNationalUniv.soCool.entity.Member;
+import changwonNationalUniv.soCool.dto.MemberRequest;
+import changwonNationalUniv.soCool.dto.MemberResponse;
 
 import java.util.List;
 
 public interface MemberService {
 
-    void save(MemberRequestDto form);
-    List<Member> findAll();
+    void save(MemberRequest form);
+    List<MemberResponse> findAll();
 }

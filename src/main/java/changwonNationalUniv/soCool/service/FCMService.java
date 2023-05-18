@@ -11,11 +11,12 @@ import org.springframework.boot.json.JsonParseException;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class FCMService {
 

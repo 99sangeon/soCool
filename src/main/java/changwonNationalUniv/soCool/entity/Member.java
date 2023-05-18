@@ -33,9 +33,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Embedded
-    private Time time = new Time();
-
     @Builder
     public Member(String name, Integer age, LocalDate birth, Float height, Float weight, Gender gender, String mobile) {
         this.name = name;

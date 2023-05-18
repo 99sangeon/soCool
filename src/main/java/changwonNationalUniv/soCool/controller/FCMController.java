@@ -23,6 +23,7 @@ public class FCMController {
                 "cwu4d_saT62q0e2HiYVjP5:APA91bH6SRskfvBoJrLRQEff4ZHgC2X8a2LyXrR8r9JoSnnCNGL3LDRFeC1KxU_YxDUMZPFdhEZ2rEUIyPNg0v2bk0dwHwhbhHd5_AjsQLUuSjjD33aIU2r9rWea7BpP8HsIz1TBNpPr",
                 "하이하이",
                 "ㄹㅇㅋㅋ");
+
         return ResponseEntity.ok().build();
     }
 }

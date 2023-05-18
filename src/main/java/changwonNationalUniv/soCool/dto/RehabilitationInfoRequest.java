@@ -2,37 +2,47 @@ package changwonNationalUniv.soCool.dto;
 
 
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import changwonNationalUniv.soCool.enums.RehabilitationState;
+import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class RehabilitationInfoRequest {
-
-    private String startTime;
-    private String endTime;
 
     private Long memberId;
 
+    private Long rehabilitationInfoId;
+
+    private String rehabilitationStartTime;
+
+    private String breakStartTime;
+
+    private String breakEndTime;
+
+    private String rehabilitationEndTime;
+
+    private Integer rehabilitationGoalTime;
+
+    private Integer rehabilitationActualTime;
+
+    private Float travelRange;
+
+    private Float slope;
+
+    private Float speed;
+
+    private Float consumedCalories;
+
     public RehabilitationInfo toEntity() {
-
-        int[] startTimeSplit = Arrays.stream(startTime.split("-")).mapToInt(Integer::parseInt).toArray();
-        int[] endTimeSplit = Arrays.stream(endTime.split("-")).mapToInt(Integer::parseInt).toArray();
-
-        return RehabilitationInfo.builder()
-                .startTime(LocalDateTime.of(startTimeSplit[0], startTimeSplit[1], startTimeSplit[2], startTimeSplit[3], startTimeSplit[4]))
-                .endTime(LocalDateTime.of(endTimeSplit[0], endTimeSplit[1], endTimeSplit[2], endTimeSplit[3], endTimeSplit[4]))
+        return RehabilitationInfo
+                .builder()
+                .rehabilitationGoalTime(rehabilitationGoalTime)
+                .rehabilitationState(RehabilitationState.BEFORE)
                 .build();
     }
 
-    @Builder
-    public RehabilitationInfoRequest(String startTime, String endTime, Long memberId) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.memberId = memberId;
-    }
 }

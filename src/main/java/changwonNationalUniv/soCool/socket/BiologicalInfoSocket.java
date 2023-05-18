@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class RehabilitationHandler extends TextWebSocketHandler {
+public class BiologicalInfoSocket extends TextWebSocketHandler {
 
     private final BiologicalInfoService biologicalInfoService;
     private final ObjectMapper objectMapper;
@@ -33,8 +33,6 @@ public class RehabilitationHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
         BiologicalInfoRequest biologicalInfoRequest = objectMapper.readValue(message.asBytes(), BiologicalInfoRequest.class);
-
-
     }
 
     @Override
