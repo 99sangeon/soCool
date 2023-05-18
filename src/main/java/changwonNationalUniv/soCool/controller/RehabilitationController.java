@@ -32,28 +32,18 @@ public class RehabilitationController {
         return ResponseEntity.ok(map);
     }
 
-    @RequestMapping("/start/{rehabilitationInfoId}")
-    public void start(@PathVariable Long rehabilitationInfoId) {
+    @RequestMapping("/start")
+    public void start(@RequestBody RehabilitationInfoRequest rehabilitationInfoRequest) {
 
-        rehabilitationInfoService.setRehabilitationStartTime(rehabilitationInfoId);
+        rehabilitationInfoService.rehabilitationStart(rehabilitationInfoRequest.getRehabilitationInfoId());
     }
 
-    @RequestMapping("/end/{rehabilitationInfoId}")
-    public void end(@PathVariable Long rehabilitationInfoId) {
+    @RequestMapping("/end")
+    public void end(@RequestBody RehabilitationInfoRequest rehabilitationInfoRequest) {
 
-        rehabilitationInfoService.setRehabilitationEndTime(rehabilitationInfoId);
+        rehabilitationInfoService.rehabilitationEnd(rehabilitationInfoRequest);
+
     }
 
-    @RequestMapping("/break/start/{rehabilitationInfoId}")
-    public void breakStart(@PathVariable Long rehabilitationInfoId) {
-
-        rehabilitationInfoService.setBreakStartTime(rehabilitationInfoId);
-    }
-
-    @RequestMapping("/break/end/{rehabilitationInfoId}")
-    public void breakEnd(@PathVariable Long rehabilitationInfoId) {
-
-        rehabilitationInfoService.setBreakEndTime(rehabilitationInfoId);
-    }
 
 }

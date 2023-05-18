@@ -20,15 +20,12 @@ public class BiologicalInfoServiceImpl implements BiologicalInfoService{
 
     @Override
     public void save(BiologicalInfoRequest biologicalInfoRequest) {
-        Long id = biologicalInfoRequest.getRehabilitationInfoId();
-        Optional<RehabilitationInfo> rehabilitationInfo = rehabilitationInfoRepository.findById(id);
 
-        if(rehabilitationInfo.isEmpty()) {
-            new NoSuchElementException("재활정보 다시 세팅!");
-        }
+        Long id = biologicalInfoRequest.getRehabilitationInfoId();
+        RehabilitationInfo rehabilitationInfo = rehabilitationInfoRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 
         BiologicalInfo biologicalInfo = biologicalInfoRequest.toEntity();
-        biologicalInfo.setRehabilitationInfo(rehabilitationInfo.get());
+        biologicalInfo.setRehabilitationInfo(rehabilitationInfo);
 
         biologicalInfoRepository.save(biologicalInfo);
     }

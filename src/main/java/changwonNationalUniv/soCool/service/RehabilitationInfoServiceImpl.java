@@ -48,7 +48,7 @@ public class RehabilitationInfoServiceImpl implements RehabilitationInfoService{
     }
 
     @Override
-    public void setRehabilitationStartTime(Long rehabilitationInfoId) {
+    public void rehabilitationStart(Long rehabilitationInfoId) {
 
         RehabilitationInfo rehabilitationInfo
                 = rehabilitationInfoRepository
@@ -60,29 +60,41 @@ public class RehabilitationInfoServiceImpl implements RehabilitationInfoService{
     }
 
     @Override
-    public void setRehabilitationEndTime(Long rehabilitationInfoId) {
-        RehabilitationInfo rehabilitationInfo
-                = rehabilitationInfoRepository
-                .findById(rehabilitationInfoId).orElseThrow(() -> new NoSuchElementException());
+    public void rehabilitationEnd(RehabilitationInfoRequest rehabilitationInfoRequest) {
+
+        RehabilitationInfo rehabilitationInfo =
+                rehabilitationInfoRepository
+                .findById(rehabilitationInfoRequest.getRehabilitationInfoId()).orElseThrow(() -> new NoSuchElementException());
+
+        Member member = rehabilitationInfo.getMember();
+
+        setRehabilitationEndInfo(rehabilitationInfoRequest, rehabilitationInfo, member);
+    }
+
+    private void setRehabilitationEndInfo(RehabilitationInfoRequest rehabilitationInfoRequest, RehabilitationInfo rehabilitationInfo, Member member) {
 
         rehabilitationInfo.setRehabilitationEndTime();
+        rehabilitationInfo.setRehabilitationState(RehabilitationState.AFTER);
+        rehabilitationInfo.setRemainingTime(rehabilitationInfoRequest.getRemainingTime());
+        rehabilitationInfo.setTravelRange(rehabilitationInfoRequest.getTravelRange());
+        rehabilitationInfo.setSlope(rehabilitationInfoRequest.getSlope());
+
+        rehabilitationInfo.setRehabilitationActualTime(rehabilitationInfo.getRehabilitationGoalTime() - rehabilitationInfoRequest.getRemainingTime());
+        rehabilitationInfo.setSpeed(rehabilitationInfoRequest.getTravelRange()/rehabilitationInfo.getRehabilitationActualTime());
+        rehabilitationInfo.setConsumedCalories(
+                calculationConsumedCalories(
+                        rehabilitationInfo.getSpeed(),
+                        rehabilitationInfo.getSlope(),
+                        rehabilitationInfo.getRehabilitationActualTime(),
+                        member.getWeight()));
     }
 
-    @Override
-    public void setBreakStartTime(Long rehabilitationInfoId) {
-        RehabilitationInfo rehabilitationInfo
-                = rehabilitationInfoRepository
-                .findById(rehabilitationInfoId).orElseThrow(() -> new NoSuchElementException());
+    private Float calculationConsumedCalories(Float speed, Float slope, Float rehabilitationActualTime, Float weight) {
 
-        rehabilitationInfo.setBreakStartTime();
+        float vo2 = (float) (3.5 + (0.1 * speed) + (1.8 * speed * slope));
+        float consumedCalories = (vo2 * weight / 200);
+
+        return consumedCalories;
     }
 
-    @Override
-    public void setBreakEndTime(Long rehabilitationInfoId) {
-        RehabilitationInfo rehabilitationInfo
-                = rehabilitationInfoRepository
-                .findById(rehabilitationInfoId).orElseThrow(() -> new NoSuchElementException());
-
-        rehabilitationInfo.setBreakEndTime();
-    }
 }

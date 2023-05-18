@@ -19,15 +19,13 @@ public class RehabilitationInfoRequest {
 
     private String rehabilitationStartTime;
 
-    private String breakStartTime;
-
-    private String breakEndTime;
-
     private String rehabilitationEndTime;
 
     private Integer rehabilitationGoalTime;
 
-    private Integer rehabilitationActualTime;
+    private Float rehabilitationActualTime;
+
+    private Float remainingTime;
 
     private Float travelRange;
 
