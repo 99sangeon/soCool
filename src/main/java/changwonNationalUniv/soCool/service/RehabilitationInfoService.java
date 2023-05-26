@@ -1,7 +1,10 @@
 package changwonNationalUniv.soCool.service;
 
 import changwonNationalUniv.soCool.dto.RehabilitationInfoRequest;
+import changwonNationalUniv.soCool.dto.response.RehabilitationInfoResponse;
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;
+
+import java.util.List;
 
 
 public interface RehabilitationInfoService {
@@ -12,5 +15,5 @@ public interface RehabilitationInfoService {
 
     void rehabilitationEnd(RehabilitationInfoRequest rehabilitationInfoRequest);
 
-
+    List<RehabilitationInfoResponse> findRehabilitationInfos();
 }

@@ -3,7 +3,6 @@ package changwonNationalUniv.soCool.controller;
 import changwonNationalUniv.soCool.dto.MemberRequest;
 import changwonNationalUniv.soCool.dto.MemberResponse;
 import changwonNationalUniv.soCool.entity.Gender;
-import changwonNationalUniv.soCool.entity.Member;
 import changwonNationalUniv.soCool.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

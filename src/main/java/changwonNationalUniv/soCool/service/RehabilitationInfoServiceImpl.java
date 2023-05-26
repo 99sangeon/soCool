@@ -1,6 +1,7 @@
 package changwonNationalUniv.soCool.service;
 
 import changwonNationalUniv.soCool.dto.RehabilitationInfoRequest;
+import changwonNationalUniv.soCool.dto.response.RehabilitationInfoResponse;
 import changwonNationalUniv.soCool.entity.Member;
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;
 import changwonNationalUniv.soCool.enums.RehabilitationState;
@@ -11,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -71,6 +74,7 @@ public class RehabilitationInfoServiceImpl implements RehabilitationInfoService{
         setRehabilitationEndInfo(rehabilitationInfoRequest, rehabilitationInfo, member);
     }
 
+
     private void setRehabilitationEndInfo(RehabilitationInfoRequest rehabilitationInfoRequest, RehabilitationInfo rehabilitationInfo, Member member) {
 
         rehabilitationInfo.setRehabilitationEndTime();
@@ -97,4 +101,27 @@ public class RehabilitationInfoServiceImpl implements RehabilitationInfoService{
         return consumedCalories;
     }
 
+    @Override
+    public List<RehabilitationInfoResponse> findRehabilitationInfos() {
+
+        List<RehabilitationInfo> rehabilitationInfos = rehabilitationInfoRepository.findAllWithMember();
+        List<RehabilitationInfoResponse> responses = new ArrayList<>();
+
+        for (RehabilitationInfo rehabilitationInfo: rehabilitationInfos) {
+
+            RehabilitationInfoResponse response = RehabilitationInfoResponse
+                    .builder()
+                    .rehabilitationInfoId(rehabilitationInfo.getId())
+                    .memberId(rehabilitationInfo.getMember().getId())
+                    .memberName(rehabilitationInfo.getMember().getName())
+                    .memberBirth(rehabilitationInfo.getMember().getBirth())
+                    .rehabilitationStartTime(rehabilitationInfo.getRehabilitationStartTime())
+                    .rehabilitationState(rehabilitationInfo.getRehabilitationState())
+                    .build();
+
+            responses.add(response);
+        }
+
+        return responses;
+    }
 }

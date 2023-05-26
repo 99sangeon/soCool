@@ -14,7 +14,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -33,6 +32,7 @@ public class BiologicalInfoSocket extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
+        
         BiologicalInfoRequest biologicalInfoRequest = objectMapper.readValue(message.asBytes(), BiologicalInfoRequest.class);
         biologicalInfoService.save(biologicalInfoRequest);
     }

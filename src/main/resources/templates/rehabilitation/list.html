@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>홈화면</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+<body>
+
+<header th:replace="/nav :: navFragment(${userId})"></header>
+
+<main>
+
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">재활ID</th>
+                <th class="text-left">환자ID</th>
+                <th class="text-left">이름</th>
+                <th class="text-left">생년월일</th>
+                <th class="text-left">재활시작시간</th>
+                <th class="text-left">재활상태</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr th:each="rehabilitationInfo : ${rehabilitationInfos}">
+                <td class="text-left" th:text="${rehabilitationInfo.rehabilitationInfoId}"></td>
+                <td class="text-left" th:text="${rehabilitationInfo.memberId}"></td>
+                <td class="text-left" th:text="${rehabilitationInfo.memberName}"></td>
+                <td class="text-left" th:text="${rehabilitationInfo.memberBirth}"></td>
+                <td class="text-left" th:text="${rehabilitationInfo.rehabilitationStartTime}"></td>
+                <td class="text-left" th:text="${rehabilitationInfo.rehabilitationState}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<footer th:replace="/footer :: footFragment"></footer>
+
+
+</body>
+</html>

@@ -1,21 +1,32 @@
-package changwonNationalUniv.soCool.dto;
+package changwonNationalUniv.soCool.dto.response;
 
-import changwonNationalUniv.soCool.entity.RehabilitationInfo;
 import changwonNationalUniv.soCool.enums.RehabilitationState;
 import lombok.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RehabilitationInfoRequest {
-
+public class RehabilitationInfoResponse {
     private Long memberId;
+
+    private String memberName;
+
+    private LocalDate memberBirth;
 
     private Long rehabilitationInfoId;
 
+    private LocalDateTime rehabilitationStartTime;
+
+    private LocalDateTime rehabilitationEndTime;
+
     private Integer rehabilitationGoalTime;
+
+    private RehabilitationState rehabilitationState;
 
     private Float rehabilitationActualTime;
 
@@ -28,13 +39,4 @@ public class RehabilitationInfoRequest {
     private Float speed;
 
     private Float consumedCalories;
-
-    public RehabilitationInfo toEntity() {
-        return RehabilitationInfo
-                .builder()
-                .rehabilitationGoalTime(rehabilitationGoalTime)
-                .rehabilitationState(RehabilitationState.BEFORE)
-                .build();
-    }
-
 }
