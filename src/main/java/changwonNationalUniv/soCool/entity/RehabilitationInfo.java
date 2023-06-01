@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RehabilitationInfo {
+public class RehabilitationInfo extends BaseTimeEntity{
 
     @Id @GeneratedValue
     @Column(name = "rehabilitation_id")

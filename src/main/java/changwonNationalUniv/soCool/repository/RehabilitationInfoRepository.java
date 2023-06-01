@@ -12,4 +12,7 @@ public interface RehabilitationInfoRepository extends JpaRepository<Rehabilitati
 
     @Query("SELECT r FROM RehabilitationInfo r JOIN FETCH  r.member")
     List<RehabilitationInfo> findAllWithMember();
+
+    @Query("SELECT r FROM RehabilitationInfo r JOIN FETCH  r.member WHERE r.id=:rehabilitationInfoId")
+    RehabilitationInfo findByIdWithMember(Long rehabilitationInfoId);
 }

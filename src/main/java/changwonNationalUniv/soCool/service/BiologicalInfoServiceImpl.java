@@ -1,5 +1,6 @@
 package changwonNationalUniv.soCool.service;
 
+import changwonNationalUniv.soCool.dto.response.BiologicalInfoResponse;
 import changwonNationalUniv.soCool.entity.BiologicalInfo;
 import changwonNationalUniv.soCool.entity.RehabilitationInfo;
 import changwonNationalUniv.soCool.repository.BiologicalInfoRepository;
@@ -8,6 +9,7 @@ import changwonNationalUniv.soCool.dto.BiologicalInfoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -28,5 +30,14 @@ public class BiologicalInfoServiceImpl implements BiologicalInfoService{
         biologicalInfo.setRehabilitationInfo(rehabilitationInfo);
 
         biologicalInfoRepository.save(biologicalInfo);
+    }
+
+    @Override
+    public List<BiologicalInfoResponse> findBiologicalInfos(Long rehabilitationInfoId) {
+
+        List<BiologicalInfoResponse> biologicalInfoResponses
+                = biologicalInfoRepository.findByRehabilitationInfoId(rehabilitationInfoId);
+
+        return biologicalInfoResponses;
     }
 }

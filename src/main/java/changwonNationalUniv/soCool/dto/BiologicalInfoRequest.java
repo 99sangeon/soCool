@@ -12,7 +12,6 @@ public class BiologicalInfoRequest {
     private float pulse;                    //맥박
     private float oxygenSaturation;         //산소포화도
     private float temperature;              //체온
-
     private Long rehabilitationInfoId;
 
     public BiologicalInfo toEntity() {

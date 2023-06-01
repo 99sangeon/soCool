@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>홈화면</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script th:inline="javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        var chartData = /*[[${biologicalInfos}]]*/ [];
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', '시간');
+            data.addColumn('number', '맥박');
+            data.addColumn('number', '산소포화도');
+            data.addColumn('number', '온도');
+
+            for (var i = 0; i < chartData.length; i++) {
+
+                var date = new Date(chartData[i].createData);
+                var formattedDate = date.toISOString().replace("T", " ").slice(0, 16);
+
+                data.addRow([formattedDate, chartData[i].pulse, chartData[i].oxygenSaturation, chartData[i].temperature]);
+            }
+
+            var options = {
+                title: '생체정보차트',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+</head>
+<body>
+
+<header th:replace="/nav :: navFragment('이름')"></header>
+
+<main>
+
+    <div class="rehabilitation" style="margin-top: 5rem;">
+
+        <div style="width: 30rem">
+            <h2>환자정보</h2>
+            <div class="rehabilitation_sub">
+                <div>
+                    <span style="font-weight: bold;">환자아이디 : </span>
+                    <span th:text="${rehabilitationInfo.memberId}"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">환자이름 : </span>
+                    <span th:text="${rehabilitationInfo.memberName}"></span>
+                </div>
+                <div>
+                    <span style="font-weight: bold;">생년월일 : </span>
+                    <span th:text="${{rehabilitationInfo.memberBirth}}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 30rem">
+            <h2>재활정보</h2>
+            <div class="rehabilitation_sub">
+                <div>
+                    <span style="font-weight: bold;">재활아이디 : </span>
+                    <span th:text="${rehabilitationInfo.rehabilitationInfoId}"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">재활시작시간 : </span>
+                    <span th:text="${{rehabilitationInfo.rehabilitationStartTime}}"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">재활종료시간 : </span>
+                    <span th:text="${{rehabilitationInfo.rehabilitationEndTime}}"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">목표재활시간 : </span>
+                    <span th:text="${rehabilitationInfo.rehabilitationGoalTime}+ '분'"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">실제재활시간 : </span>
+                    <span th:text="${rehabilitationInfo.rehabilitationActualTime}+ '분'"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">이동거리 : </span>
+                    <span th:text="${rehabilitationInfo.travelRange}+ 'm'"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">평균경사도 : </span>
+                    <span th:text="${rehabilitationInfo.slope}+ '%'"></span>
+                </div>
+                <div style="margin: 0.5rem 0">
+                    <span style="font-weight: bold;">평균속도 : </span>
+                    <span th:text="${rehabilitationInfo.speed} + 'm/minute'"></span>
+                </div>
+                <div>
+                    <span style="font-weight: bold;">소모칼로리 : </span>
+                    <span th:text="${rehabilitationInfo.consumedCalories} + 'kcal'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="curve_chart" style="width: 80rem; height: 50rem; margin: auto;"></div>
+
+</main>
+
+<footer th:replace="/footer :: footFragment"></footer>
+
+</body>
+</html>

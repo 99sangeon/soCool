@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class BiologicalInfo {
+public class BiologicalInfo extends BaseTimeEntity{
 
     @Id @GeneratedValue
     @Column(name = "biological_id" )

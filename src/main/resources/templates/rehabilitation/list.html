@@ -24,12 +24,13 @@
             </tr>
         </thead>
         <tbody class="table-hover">
-            <tr th:each="rehabilitationInfo : ${rehabilitationInfos}">
+            <tr th:each="rehabilitationInfo : ${rehabilitationInfos}"
+                th:onclick="|location.href='@{/rehabilitation/detail/{rehabilitationInfoId}(rehabilitationInfoId=${rehabilitationInfo.rehabilitationInfoId})}'|">
                 <td class="text-left" th:text="${rehabilitationInfo.rehabilitationInfoId}"></td>
                 <td class="text-left" th:text="${rehabilitationInfo.memberId}"></td>
                 <td class="text-left" th:text="${rehabilitationInfo.memberName}"></td>
                 <td class="text-left" th:text="${rehabilitationInfo.memberBirth}"></td>
-                <td class="text-left" th:text="${rehabilitationInfo.rehabilitationStartTime}"></td>
+                <td class="text-left" th:text="${{rehabilitationInfo.rehabilitationStartTime}}"></td>
                 <td class="text-left" th:text="${rehabilitationInfo.rehabilitationState}"></td>
             </tr>
         </tbody>

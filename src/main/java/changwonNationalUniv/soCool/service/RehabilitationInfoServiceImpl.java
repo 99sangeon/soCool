@@ -28,13 +28,27 @@ public class RehabilitationInfoServiceImpl implements RehabilitationInfoService{
     private final MemberRepository memberRepository;
 
     @Override
-    public RehabilitationInfo findRehabilitationInfo(Long id) {
-        Optional<RehabilitationInfo> rehabilitationInfo = rehabilitationInfoRepository.findById(id);
-        if(rehabilitationInfo.isEmpty()) {
-            new NoSuchFieldException("해당 재활 번호가 생성되지 않았습니다. 관리자 스마트폰으로 재활정보를 입력해주세요.");
-        }
+    public RehabilitationInfoResponse findRehabilitationInfo(Long rehabilitationInfoId) {
 
-        return rehabilitationInfo.get();
+        RehabilitationInfo rehabilitationInfo = rehabilitationInfoRepository.findById(rehabilitationInfoId).orElseThrow(() -> new NoSuchElementException());
+
+        return RehabilitationInfoResponse
+                .builder()
+                .memberId(rehabilitationInfo.getMember().getId())
+                .memberName(rehabilitationInfo.getMember().getName())
+                .memberBirth(rehabilitationInfo.getMember().getBirth())
+                .rehabilitationInfoId(rehabilitationInfo.getId())
+                .rehabilitationStartTime(rehabilitationInfo.getRehabilitationStartTime())
+                .rehabilitationEndTime(rehabilitationInfo.getRehabilitationEndTime())
+                .rehabilitationGoalTime(rehabilitationInfo.getRehabilitationGoalTime())
+                .rehabilitationState(rehabilitationInfo.getRehabilitationState())
+                .rehabilitationActualTime(rehabilitationInfo.getRehabilitationActualTime())
+                .remainingTime(rehabilitationInfo.getRemainingTime())
+                .travelRange(rehabilitationInfo.getTravelRange())
+                .slope(rehabilitationInfo.getSlope())
+                .speed(rehabilitationInfo.getSpeed())
+                .consumedCalories(rehabilitationInfo.getConsumedCalories())
+                .build();
     }
 
     @Override
